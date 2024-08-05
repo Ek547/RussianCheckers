@@ -34,7 +34,7 @@ if __name__ == "__main__":
         if possible[0]==[0,0,False]: #check there any possible moves
             end=1 #end of game
             constants.movetime.pop(0)#
-            if constants.comp == True:
+            #if constants.comp == True:
               print("depth = ", constants.depth)
               print("mean: ",sum(constants.movetime)/len(constants.movetime))
               print("max: ", max(constants.movetime))
@@ -60,8 +60,6 @@ if __name__ == "__main__":
             else:
               bot[1]=possible[0][0]
               bot[2]=possible[0][1]
-            print(bot[0])
-            print(bot[1],bot[2])
             turn,change,piece=bot_move(bot[1],bot[2],state,turn,possible,WIN,piece)# move bot piece
             bot_highlight(bot[1],bot[2],state,WIN,constants.botplayer)
             if change == True:
