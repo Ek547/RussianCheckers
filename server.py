@@ -1,6 +1,8 @@
 import socket
 from _thread import *
 import sys
+from engine import minimax,ThreadWithReturnValue
+
 
 server = "192.168.0.35"
 port = 5555
@@ -21,7 +23,8 @@ def threaded_client(connection):
     while True:
         try:
             data = conn.recv(2048)
-            reply = data.decode("utf-8")
+            data = data.decode("utf-8")
+            reply = ThreadWithReturnValue(target= minimax, args=data)
             if not data:
                 print("Disconnected")
                 break
