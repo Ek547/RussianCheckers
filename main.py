@@ -35,10 +35,10 @@ if __name__ == "__main__":
             end=1 #end of game
             constants.movetime.pop(0)#
             #if constants.comp == True:
-              print("depth = ", constants.depth)
-              print("mean: ",sum(constants.movetime)/len(constants.movetime))
-              print("max: ", max(constants.movetime))
-              #adding time taken to array for data analysis
+            print("depth = ", constants.depth)
+            print("mean: ",sum(constants.movetime)/len(constants.movetime))
+            print("max: ", max(constants.movetime))
+            #adding time taken to array for data analysis
         
         display_turn(turn,WIN,end)# redraw the banner  
         possible_found = True
