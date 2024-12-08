@@ -7,7 +7,7 @@ class Network:
         self.client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         self.server = "192.168.0.35"
         self.port = 5555
-        self.adress = (self.server, self.port)
+        self.address = (self.server, self.port)
         self.id = self.connect()
         print(self.id)
 
@@ -19,4 +19,4 @@ class Network:
             pass
 
 
-n = Network ()
+n = Network()
