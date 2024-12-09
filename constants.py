@@ -16,7 +16,7 @@ q=0
 end=[[0,0]]*4 ### [direction CW,squarenum]  1=upright  2=downright 3=downleft  4=upleft
 movetime=[0]
 depth=4
-botplayer=1
+botplayer=2
 comp=False
 edit=False
 

@@ -41,7 +41,6 @@ def initial_setup(state):#place the pieces and set up the location arrays
                 state[i][j].occupied = 1
                 constants.whitelocation[n]=[i,j,1]#setup white location
                 n+=1
-    print(constants.whitelocation)
     n=0
         
     for i in range(5,8):
@@ -50,8 +49,6 @@ def initial_setup(state):#place the pieces and set up the location arrays
                 state[i][j].occupied = 2
                 constants.blacklocation[n]=[i,j,1]
                 n+=1  
-    print(constants.blacklocation)
-    test(state)
     return state
 
 def draw_pieces(state,WIN):

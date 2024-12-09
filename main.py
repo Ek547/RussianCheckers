@@ -7,6 +7,7 @@ if __name__ == "__main__":
   import constants
   from engine import minimax,ThreadWithReturnValue
   from menu import main_menu
+  from server_connection import Network
   import pickle
 
 #import functions from other files
