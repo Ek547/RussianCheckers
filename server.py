@@ -2,7 +2,7 @@ import socket
 from _thread import *
 import sys
 import pickle
-
+import time
 
 server = "192.168.0.35"
 port = 5555
@@ -14,11 +14,13 @@ except socket.error as e:
 s.listen(2)
 print("waiting for connection")
 
-move=[[0,0,0],[1,1,1]]
-ready = False
+move=[[0,1,1],[1,1,1]]
+ready = [False,False]
 
 
-
+def reset():
+    move=[[0,1,1],[1,1,1]]
+    ready = [False,False]
 
 
 def threaded_client(conn, player):
@@ -27,24 +29,28 @@ def threaded_client(conn, player):
     while True:
         try:
             data = pickle.loads(conn.recv(2048))
+            print("some data", data,player)
             if not data:
                 print("Disconnected")
                 break
-            else:
-                if player == data[0]%2:
-                    move[player] = data
-                    ready = True
-                    print("Received: ", data)
-                else:
-                    if ready == True:
-                        reply = move[(player+1)%2]
-                        ready = False
-                        conn.sendall(pickle.dumps(reply))
-                        print("Sending : ", reply)
+            elif data == [-1,-1,-1]:
+                while ready[player] == False:
+                    time.sleep(0.5)
+                reply = move[(player+1)%2]
+                ready[player] = False
+                conn.sendall(pickle.dumps(reply))
+                print("Sending : ", reply,player)
+            elif data == [-2,-2,-2]:
+                reset()
+            elif player == data[0]%2:
+                move[player] = data
+                ready[(player+1)%2] = True
+                print("Received: ", data)
         except:
             break
 
-    print("Lost connection")
+    print("Lost connection", player)
+    reset()
     conn.close()
 
 
