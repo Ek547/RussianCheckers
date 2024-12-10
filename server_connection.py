@@ -16,7 +16,7 @@ class Network:
 
     def connect(self):
         try:
-            self.client.connect(self.addr)
+            self.client.connect(self.address)
             return pickle.loads(self.client.recv(2048))
         except:
             pass
@@ -31,8 +31,9 @@ class Network:
     
     def receive(self):
         try:
+            self.client.send(pickle.dumps([-1,-1,-1]))
             return pickle.loads(self.client.recv(2048))
-        except socket.error as e:
-            print(e)
+        except:
+            return [0,0,0]
 
     
