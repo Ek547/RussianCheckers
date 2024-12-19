@@ -1,10 +1,10 @@
 import socket
 from _thread import *
-import sys
 import pickle
 import time
 
-server = "192.168.0.35"
+server = ""
+print(server)
 port = 5555
 s= socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 try:
@@ -35,7 +35,7 @@ def threaded_client(conn, player):
                 break
             elif data == [-1,-1,-1]:
                 while ready[player] == False:
-                    time.sleep(0.5)
+                    time.sleep(0.25)
                 reply = move[(player+1)%2]
                 ready[player] = False
                 conn.sendall(pickle.dumps(reply))
